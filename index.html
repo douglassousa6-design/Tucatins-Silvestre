@@ -1,689 +1,701 @@
 <!DOCTYPE html>
+<!--
+==========================================================
+   TUCÃTINS SILVESTRE — PÁGINA PRINCIPAL (index.html)
+==========================================================
+
+   COMO ESTE PROJETO ESTÁ ORGANIZADO
+   - index.html      -> o CONTEÚDO da página (textos, seções, imagens)
+   - css/style.css   -> a APARÊNCIA (cores, tamanhos, posições)
+   - js/especies.js  -> os DADOS das espécies registradas
+   - js/script.js    -> o COMPORTAMENTO (menu, filtros, animações)
+   - imagens/        -> as fotos do site
+
+   ORDEM DAS SEÇÕES
+   1.  Cabeçalho (menu)
+   2.  Hero (capa)
+   3.  Quem Somos
+   4.  Áreas de Atuação
+   5.  Missão, Visão e Valores
+   6.  Área de Estudo (Formoso do Araguaia e Palmas)
+   7.  Como Pesquisamos (metodologia)
+   8.  Caderno de Campo (espécies)
+   9.  Números do Projeto
+   10. Educação Ambiental
+   11. Linha do Tempo
+   12. Publicações
+   13. Galeria
+   14. Equipe
+   15. Parceiros
+   16. Contato / Como participar
+   17. Rodapé
+==========================================================
+-->
 <html lang="pt-BR">
 
 <head>
 
+    <!-- Codificação de caracteres: permite acentos (ã, ç, é...) -->
     <meta charset="UTF-8">
+
+    <!-- Faz o site se ajustar à tela do celular -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Tucãtins Silvestre | Conservação da Biodiversidade do Tocantins</title>
+    <!-- Título que aparece na aba do navegador e no Google -->
+    <title>Tucãtins Silvestre | Conservação do Cerrado em Formoso do Araguaia - TO</title>
 
+    <!-- Descrição usada pelo Google nos resultados de busca.
+         Ela cita Formoso do Araguaia para que o projeto seja encontrado
+         por quem pesquisar pela cidade. -->
     <meta name="description"
-        content="Projeto Tucãtins Silvestre voltado à conservação da biodiversidade do Tocantins, pesquisa científica, educação ambiental e proteção da fauna e flora.">
+        content="Projeto estudantil do IFTO que monitora a fauna do Cerrado com câmeras trap em Formoso do Araguaia (TO), promovendo pesquisa científica, educação ambiental e conservação da biodiversidade.">
 
     <meta name="keywords"
-        content="Tucãtins Silvestre, Biodiversidade, Tocantins, Fauna, Flora, Conservação, Educação Ambiental">
+        content="Tucãtins Silvestre, Formoso do Araguaia, Tocantins, Cerrado, câmera trap, fauna, educação ambiental, IFTO, conservação">
 
-    <meta name="author" content="Tucãtins Silvestre">
+    <meta name="author" content="Equipe Tucãtins Silvestre - IFTO">
 
-    <!-- Ícone -->
+    <!-- OPEN GRAPH: controla como o link aparece quando é compartilhado
+         no WhatsApp, Instagram, Facebook etc. (título, texto e imagem) -->
+    <meta property="og:title" content="Tucãtins Silvestre">
+    <meta property="og:description" content="Monitoramento da fauna do Cerrado em Formoso do Araguaia - TO.">
+    <meta property="og:image" content="imagens/logo.png">
+    <meta property="og:type" content="website">
+
+    <!-- Ícone da aba do navegador (favicon): o próprio logo do projeto -->
     <link rel="icon" href="imagens/logo.png">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/style.css">
-
-    <!-- Google Fonts -->
+    <!-- Fontes do Google:
+         - Cinzel e Poppins: títulos e textos do site
+         - IM Fell English: letra de livro antigo (Caderno de Campo)
+         - Caveat: letra de mão, para as "anotações" do caderno -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Cinzel:wght@500;600;700&family=IM+Fell+English:ital@0;1&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome: biblioteca de ícones (patinha, folha, câmera...).
+         Usamos assim: <i class="fa-solid fa-paw"></i> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
 
-    <!-- Ícones -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <!-- Nosso arquivo de estilos (vem por último para ter prioridade) -->
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
 
-    <!-- ================= HEADER ================= -->
-
-    <header>
+    <!-- =====================================================
+         1. CABEÇALHO
+         Fica fixo no topo. O JavaScript muda a cor dele
+         quando a pessoa rola a página.
+    ====================================================== -->
+    <header id="topo">
 
         <div class="container">
 
-            <a href="#" class="logo">
+            <!-- LOGO
+                 A imagem fica em imagens/logo.png.
+                 O texto ao lado ajuda a ler o nome, que fica pequeno no logo. -->
+            <a href="#topo" class="logo" aria-label="Voltar ao início">
                 <img src="imagens/logo.png" alt="Logo Tucãtins Silvestre">
+                <span>Tucãtins <strong>Silvestre</strong></span>
             </a>
 
-            <nav>
+            <!-- BOTÃO DO MENU NO CELULAR (ícone de "hambúrguer" ☰)
+                 Só aparece em telas pequenas (veja o CSS).
+                 aria-label e aria-expanded ajudam leitores de tela
+                 usados por pessoas com deficiência visual. -->
+            <button class="menu-botao" aria-label="Abrir menu" aria-expanded="false">
+                <i class="fa-solid fa-bars"></i>
+            </button>
 
+            <!-- MENU DE NAVEGAÇÃO
+                 Cada href="#algo" leva até a seção que tem id="algo". -->
+            <nav class="menu">
                 <ul>
-
-                    <li><a href="#">Início</a></li>
                     <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#area-estudo">Área de Estudo</a></li>
                     <li><a href="#especies">Espécies</a></li>
-                    <li><a href="#projetos">Projetos</a></li>
-                    <li><a href="#galeria">Galeria</a></li>
+                    <li><a href="#educacao">Educação</a></li>
+                    <li><a href="#publicacoes">Publicações</a></li>
+                    <li><a href="#equipe">Equipe</a></li>
                     <li><a href="#contato">Contato</a></li>
-
                 </ul>
-
             </nav>
 
         </div>
 
     </header>
 
-    <!-- ================= HERO ================= -->
 
+    <!-- =====================================================
+         2. HERO (CAPA)
+         A primeira coisa que o visitante vê.
+         A imagem de fundo é definida no CSS (.hero).
+    ====================================================== -->
     <section class="hero">
-
-        <div class="overlay"></div>
 
         <div class="hero-content">
 
+            <!-- Pequena etiqueta acima do título -->
+            <span class="hero-etiqueta">
+                <i class="fa-solid fa-location-dot"></i> Formoso do Araguaia • Tocantins
+            </span>
+
             <h1>Tucãtins Silvestre</h1>
 
-            <h2>
-                Conservando a biodiversidade do Tocantins
-            </h2>
+            <h2>Conhecer para conservar a fauna do Cerrado</h2>
 
             <p>
-                Pesquisa científica • Educação Ambiental • Conservação da fauna e flora • Proteção do Cerrado Brasileiro
+                Pesquisa científica com câmeras trap • Educação ambiental • Proteção da fauna e flora
             </p>
 
-            <a href="#sobre" class="btn">
-                Conheça Nossa História
-            </a>
+            <!-- Dois botões: um principal (amarelo) e um secundário (contorno) -->
+            <div class="hero-botoes">
+                <a href="#sobre" class="btn">Conheça o Projeto</a>
+                <a href="#especies" class="btn btn-contorno">Veja os Registros</a>
+            </div>
 
         </div>
 
     </section>
 
-    <!-- ================= SOBRE ================= -->
 
+    <!-- =====================================================
+         3. QUEM SOMOS
+    ====================================================== -->
     <section id="sobre" class="sobre">
 
+        <div class="container sobre-grid">
+
+            <!-- Coluna da esquerda: texto -->
+            <div class="sobre-texto">
+
+                <!-- .titulo é um padrão que usamos em todas as seções:
+                     <span> pequeno + <h2> grande + <p> de apoio -->
+                <div class="titulo titulo-esquerda">
+                    <span>Quem Somos</span>
+                    <h2>Um projeto de estudantes do IFTO pelo Cerrado</h2>
+                </div>
+
+                <p>
+                    O <strong>Tucãtins Silvestre</strong> é um projeto de pesquisa e extensão do
+                    <strong>Instituto Federal do Tocantins (IFTO)</strong>, desenvolvido por estudantes
+                    dos cursos técnicos em Agricultura e em Informática Integrados ao Ensino Médio,
+                    com orientação de professoras do instituto.
+                </p>
+
+                <p>
+                    Nosso foco é o município de <strong>Formoso do Araguaia</strong>, no sudoeste do
+                    Tocantins, onde instalamos <strong>câmeras trap</strong> (armadilhas fotográficas)
+                    em fragmentos de Cerrado cercados por áreas agrícolas. Os registros mostram quais
+                    animais ainda vivem nesses fragmentos e por que eles precisam ser protegidos.
+                </p>
+
+                <p>
+                    Os vídeos e fotos das câmeras também viram <strong>material de educação ambiental</strong>,
+                    compartilhado no nosso Instagram para aproximar a comunidade da fauna local.
+                </p>
+
+            </div>
+
+            <!-- Coluna da direita: curiosidade sobre o nome do projeto -->
+            <aside class="sobre-destaque">
+                <i class="fa-solid fa-feather-pointed"></i>
+                <h3>Por que "Tucãtins"?</h3>
+                <p>
+                    O nome junta <strong>Tucano</strong> + <strong>Tocantins</strong>: uma ave símbolo
+                    do Cerrado com o estado onde o projeto nasceu. Por isso o nosso logo mostra
+                    um tucano sobre o mapa do Tocantins.
+                </p>
+            </aside>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         4. ÁREAS DE ATUAÇÃO
+         Antes havia duas seções repetidas ("Áreas de Atuação" e
+         "Objetivos"). Juntamos as duas em uma só.
+    ====================================================== -->
+    <section class="atuacao">
+
         <div class="container">
 
-            <h2>Quem Somos</h2>
+            <div class="titulo">
+                <span>O que fazemos</span>
+                <h2>Áreas de Atuação</h2>
+                <p>Quatro frentes de trabalho que se completam.</p>
+            </div>
 
-            <p>
+            <div class="atuacao-grid">
 
-                O Projeto Tucãtins Silvestre atua na conservação da biodiversidade do Tocantins, promovendo pesquisas científicas, educação ambiental e ações voltadas à proteção da fauna e flora do Cerrado.
+                <div class="atuacao-card">
+                    <i class="fa-solid fa-paw"></i>
+                    <h3>Fauna</h3>
+                    <p>Monitoramento de mamíferos e aves com câmeras trap e observação direta.</p>
+                </div>
 
+                <div class="atuacao-card">
+                    <i class="fa-solid fa-seedling"></i>
+                    <h3>Flora</h3>
+                    <p>Valorização da vegetação nativa e das matas ciliares que servem de abrigo e alimento para os animais.</p>
+                </div>
+
+                <div class="atuacao-card">
+                    <i class="fa-solid fa-microscope"></i>
+                    <h3>Pesquisa</h3>
+                    <p>Produção de dados inéditos sobre a fauna da região, apresentados em eventos científicos.</p>
+                </div>
+
+                <div class="atuacao-card">
+                    <i class="fa-solid fa-school"></i>
+                    <h3>Educação Ambiental</h3>
+                    <p>Vídeos e conteúdos educativos feitos a partir dos registros das câmeras.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         5. MISSÃO, VISÃO E VALORES
+    ====================================================== -->
+    <section class="missao">
+
+        <div class="container">
+
+            <div class="titulo">
+                <span>Nossa Essência</span>
+                <h2>Missão, Visão e Valores</h2>
+            </div>
+
+            <div class="missao-grid">
+
+                <div class="missao-card">
+                    <i class="fa-solid fa-bullseye"></i>
+                    <h3>Missão</h3>
+                    <p>
+                        Conhecer e divulgar a fauna do Cerrado de Formoso do Araguaia, por meio da pesquisa
+                        científica e da educação ambiental, para contribuir com a sua conservação.
+                    </p>
+                </div>
+
+                <div class="missao-card">
+                    <i class="fa-solid fa-eye"></i>
+                    <h3>Visão</h3>
+                    <p>
+                        Ser referência estudantil em monitoramento e divulgação científica da
+                        biodiversidade do Cerrado tocantinense.
+                    </p>
+                </div>
+
+                <div class="missao-card">
+                    <i class="fa-solid fa-heart"></i>
+                    <h3>Valores</h3>
+                    <p>
+                        Ética, respeito à vida silvestre, rigor científico, trabalho em equipe
+                        e educação como caminho para transformar a sociedade.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         6. ÁREA DE ESTUDO
+         Seção nova: mostra ONDE o projeto atua.
+         O mapa usa o OpenStreetMap, que é gratuito e não
+         precisa de cadastro. O <iframe> "embute" uma página
+         dentro da nossa.
+    ====================================================== -->
+    <section id="area-estudo" class="area-estudo">
+
+        <div class="container">
+
+            <div class="titulo">
+                <span>Onde atuamos</span>
+                <h2>Área de Estudo</h2>
+                <p>
+                    O monitoramento acontece em duas áreas de Cerrado com realidades bem diferentes:
+                    uma rural e outra urbana. Comparar as duas ajuda a entender como a fauna reage à
+                    ação humana.
+                </p>
+            </div>
+
+            <div class="area-grid">
+
+                <!-- MAPA de Formoso do Araguaia.
+                     Para mudar o local, altere os números de "bbox"
+                     (limites do mapa) e "marker" (posição do alfinete). -->
+                <div class="area-mapa">
+                    <iframe
+                        title="Mapa de Formoso do Araguaia - TO"
+                        src="https://www.openstreetmap.org/export/embed.html?bbox=-50.0%2C-12.2%2C-49.0%2C-11.4&amp;layer=mapnik&amp;marker=-11.8025%2C-49.5283"
+                        loading="lazy">
+                    </iframe>
+                    <small>Mapa: © colaboradores do OpenStreetMap</small>
+                </div>
+
+                <div class="area-cards">
+
+                    <!-- Área principal: recebe a classe extra "principal" para ganhar destaque -->
+                    <article class="area-card principal">
+                        <span class="area-sigla">Área 2 • Foco do projeto</span>
+                        <h3><i class="fa-solid fa-tractor"></i> Formoso do Araguaia - TO</h3>
+                        <p>
+                            Fragmentos de vegetação nativa de Cerrado inseridos em meio a áreas agrícolas,
+                            no sudoeste do Tocantins. Monitoramento iniciado em <strong>julho de 2025</strong>.
+                        </p>
+                        <p>
+                            A região tem grande valor para a natureza: Formoso do Araguaia foi reconhecida
+                            pela BirdLife International como <strong>Área Importante para a Conservação
+                            das Aves (IBA)</strong>.
+                        </p>
+                        <ul class="area-lista">
+                            <li><i class="fa-solid fa-check"></i> Registro do tamanduá-bandeira, espécie ameaçada</li>
+                            <li><i class="fa-solid fa-check"></i> Ambiente rural, com fragmentação da vegetação</li>
+                        </ul>
+                    </article>
+
+                    <article class="area-card">
+                        <span class="area-sigla">Área 1 • Comparação</span>
+                        <h3><i class="fa-solid fa-city"></i> Córrego Sussuapara - Palmas</h3>
+                        <p>
+                            Mata ciliar do Córrego Sussuapara, dentro da área urbana de Palmas.
+                            Monitorada em <strong>2024</strong>, serve de comparação com a área rural.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         7. COMO PESQUISAMOS (METODOLOGIA)
+         Seção nova: explica o método em passos numerados.
+         Usamos <ol> (lista ORDENADA), porque a ordem importa.
+    ====================================================== -->
+    <section class="metodologia">
+
+        <div class="container">
+
+            <div class="titulo">
+                <span>Ciência na prática</span>
+                <h2>Como Pesquisamos</h2>
+                <p>
+                    A <strong>câmera trap</strong> é uma câmera com sensor de movimento e calor que
+                    dispara sozinha quando um animal passa na frente, de dia ou de noite. Assim
+                    conseguimos registrar a fauna sem incomodar os animais.
+                </p>
+            </div>
+
+            <ol class="passos">
+
+                <li class="passo">
+                    <span class="passo-numero">1</span>
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    <h3>Escolha dos pontos</h3>
+                    <p>Trilhas, locais de passagem de animais e lugares próximos à água.</p>
+                </li>
+
+                <li class="passo">
+                    <span class="passo-numero">2</span>
+                    <i class="fa-solid fa-camera"></i>
+                    <h3>Instalação</h3>
+                    <p>Duas câmeras trap (modelo HC-801A-LI) presas a 60 cm do chão.</p>
+                </li>
+
+                <li class="passo">
+                    <span class="passo-numero">3</span>
+                    <i class="fa-solid fa-clock"></i>
+                    <h3>Monitoramento</h3>
+                    <p>Câmeras ligadas 24 horas por dia durante três semanas seguidas.</p>
+                </li>
+
+                <li class="passo">
+                    <span class="passo-numero">4</span>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <h3>Identificação</h3>
+                    <p>Cada animal é identificado e seu grau de ameaça é consultado na lista da IUCN.</p>
+                </li>
+
+                <li class="passo">
+                    <span class="passo-numero">5</span>
+                    <i class="fa-solid fa-bullhorn"></i>
+                    <h3>Divulgação</h3>
+                    <p>Os registros viram vídeos educativos e trabalhos científicos.</p>
+                </li>
+
+            </ol>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         8. CADERNO DE CAMPO (ESPÉCIES)
+         Inspirado nos "compêndios de animais" de jogos de
+         exploração: um livro aberto em que cada animal
+         registrado é "desbloqueado".
+
+         - Página da ESQUERDA: índice com todos os animais
+           registrados pelo projeto.
+         - Página da DIREITA: a ficha do animal escolhido.
+
+         O conteúdo do caderno NÃO está escrito aqui!
+         O JavaScript (js/script.js) monta tudo a partir da
+         lista em js/especies.js. Aqui deixamos só as
+         "caixas vazias" com id, onde o conteúdo será colocado.
+    ====================================================== -->
+    <section id="especies" class="especies">
+
+        <div class="container">
+
+            <div class="titulo titulo-claro">
+                <span>Biodiversidade</span>
+                <h2>Caderno de Campo</h2>
+                <p>
+                    Cada animal flagrado pelas nossas câmeras trap ganha uma página neste caderno.
+                    Clique em um animal para abrir a sua ficha.
+                </p>
+            </div>
+
+            <!-- ABAS DE FILTRO (parecem marcadores de livro)
+                 O atributo data-filtro guarda qual filtro cada aba aplica.
+                 O JavaScript lê esse valor quando a aba é clicada. -->
+            <div class="caderno-abas" role="group" aria-label="Filtrar animais do caderno">
+                <button class="aba ativo" data-filtro="todas">Todos</button>
+                <button class="aba" data-filtro="mamifero">Mamíferos</button>
+                <button class="aba" data-filtro="ave">Aves</button>
+                <button class="aba" data-filtro="formoso">Formoso do Araguaia</button>
+                <button class="aba" data-filtro="palmas">Palmas</button>
+            </div>
+
+            <!-- O LIVRO: capa de couro com duas páginas dentro -->
+            <div class="caderno">
+
+                <!-- PÁGINA DA ESQUERDA: índice -->
+                <div class="pagina pagina-esquerda">
+
+                    <header class="pagina-cabecalho">
+                        <h3>Fauna do Cerrado</h3>
+                        <p>Tucãtins Silvestre • Expedições 2024–2025</p>
+                    </header>
+
+                    <!-- Resumo: o JavaScript conta quantos animais há no caderno -->
+                    <p class="progresso" id="progresso-texto"></p>
+
+                    <!-- Aqui o JavaScript coloca os itens do índice -->
+                    <ol class="indice" id="indice-especies"></ol>
+
+                </div>
+
+                <!-- PÁGINA DA DIREITA: ficha do animal escolhido.
+                     aria-live="polite" avisa leitores de tela quando a ficha muda. -->
+                <article class="pagina pagina-direita" id="ficha-especie" aria-live="polite"></article>
+
+            </div>
+
+            <p class="fonte">
+                Registros: resumos do projeto na 16ª JICE (IFTO, 2025). Status de ameaça: IUCN.
+                Fotos ilustrativas: Wikimedia Commons (autores e licenças em cada ficha).
             </p>
 
         </div>
 
     </section>
 
-    <!-- ================= ÁREAS DE ATUAÇÃO ================= -->
 
-<section class="atuacao">
+    <!-- =====================================================
+         9. NÚMEROS DO PROJETO
+         IMPORTANTE: em um site científico os números precisam
+         ser REAIS. Estes vêm dos resumos publicados.
+         O JavaScript faz a animação de contagem usando o valor
+         do atributo data-numero.
+         Quando o projeto crescer, é só atualizar os números.
+    ====================================================== -->
+    <section class="numeros">
 
-    <div class="container">
+        <div class="container">
 
-        <div class="titulo">
-
-            <span>O que fazemos</span>
-
-            <h2>Áreas de Atuação</h2>
-
-            <p>
-                O Projeto Tucãtins Silvestre desenvolve ações voltadas para a preservação da biodiversidade,
-                pesquisa científica e conscientização ambiental.
-            </p>
-
-        </div>
-
-        <div class="atuacao-grid">
-
-            <div class="atuacao-card">
-
-                <i class="fa-solid fa-paw"></i>
-
-                <h3>Fauna</h3>
-
-                <p>
-                    Monitoramento e conservação de espécies silvestres do Cerrado.
-                </p>
-
+            <div class="titulo titulo-claro">
+                <span>Nossos Resultados</span>
+                <h2>Números do Projeto</h2>
             </div>
 
-            <div class="atuacao-card">
+            <div class="numeros-grid">
 
-                <i class="fa-solid fa-seedling"></i>
+                <div class="numero">
+                    <i class="fa-solid fa-dove"></i>
+                    <!-- O texto começa em 0 e o JavaScript conta até 13 -->
+                    <strong data-numero="13">0</strong>
+                    <p>Espécies registradas</p>
+                </div>
 
-                <h3>Flora</h3>
+                <div class="numero">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <strong data-numero="2">0</strong>
+                    <p>Áreas monitoradas</p>
+                </div>
 
-                <p>
-                    Estudos e preservação da vegetação nativa do Tocantins.
-                </p>
+                <div class="numero">
+                    <i class="fa-solid fa-camera"></i>
+                    <strong data-numero="2">0</strong>
+                    <p>Câmeras trap</p>
+                </div>
 
-            </div>
-
-            <div class="atuacao-card">
-
-                <i class="fa-solid fa-microscope"></i>
-
-                <h3>Pesquisa</h3>
-
-                <p>
-                    Desenvolvimento de pesquisas científicas e levantamentos ambientais.
-                </p>
-
-            </div>
-
-            <div class="atuacao-card">
-
-                <i class="fa-solid fa-school"></i>
-
-                <h3>Educação Ambiental</h3>
-
-                <p>
-                    Palestras, oficinas e ações educativas para a comunidade.
-                </p>
+                <div class="numero">
+                    <i class="fa-solid fa-file-lines"></i>
+                    <strong data-numero="3">0</strong>
+                    <p>Trabalhos científicos</p>
+                </div>
 
             </div>
 
         </div>
 
-    </div>
+    </section>
 
-</section>
 
-<!-- ================= MISSÃO, VISÃO E VALORES ================= -->
+    <!-- =====================================================
+         10. EDUCAÇÃO AMBIENTAL
+         Seção nova: ameaças ao Cerrado + atitudes que ajudam.
+    ====================================================== -->
+    <section id="educacao" class="educacao">
 
-<section class="missao">
+        <div class="container">
 
-    <div class="container">
-
-        <div class="titulo">
-
-            <span>Nossa Essência</span>
-
-            <h2>Missão, Visão e Valores</h2>
-
-        </div>
-
-        <div class="missao-grid">
-
-            <div class="missao-card">
-
-                <i class="fa-solid fa-bullseye"></i>
-
-                <h3>Missão</h3>
-
+            <div class="titulo">
+                <span>Educação Ambiental</span>
+                <h2>O Cerrado precisa de você</h2>
                 <p>
-                    Promover a conservação da biodiversidade do Tocantins por meio da pesquisa científica,
-                    educação ambiental e incentivo à preservação dos ecossistemas.
+                    Nossos registros mostram que a perda e a fragmentação da vegetação nativa
+                    reduzem a variedade de animais. Conheça as principais ameaças e o que cada
+                    pessoa pode fazer.
                 </p>
+            </div>
+
+            <div class="educacao-grid">
+
+                <!-- Coluna 1: ameaças -->
+                <div class="educacao-coluna ameacas">
+                    <h3><i class="fa-solid fa-circle-exclamation"></i> Principais ameaças</h3>
+                    <ul>
+                        <li><strong>Desmatamento e fragmentação:</strong> a mata vira "ilhas" isoladas e os animais ficam sem abrigo e alimento.</li>
+                        <li><strong>Queimadas:</strong> o fogo fora de controle destrói a vegetação e mata animais.</li>
+                        <li><strong>Atropelamentos:</strong> estradas cortam os caminhos naturais da fauna.</li>
+                        <li><strong>Caça e tráfico:</strong> retiram animais da natureza ilegalmente.</li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 2: atitudes -->
+                <div class="educacao-coluna atitudes">
+                    <h3><i class="fa-solid fa-hand-holding-heart"></i> Como você pode ajudar</h3>
+                    <ul>
+                        <li>Dirija devagar em estradas rurais, principalmente ao amanhecer e à noite.</li>
+                        <li>Não alimente nem tente pegar animais silvestres.</li>
+                        <li>Nunca compre animais silvestres sem origem legal.</li>
+                        <li>Preserve as matas ciliares (as matas na beira de rios e córregos).</li>
+                        <li>Compartilhe informação: quem conhece, protege!</li>
+                    </ul>
+                </div>
 
             </div>
 
-            <div class="missao-card">
-
-                <i class="fa-solid fa-eye"></i>
-
-                <h3>Visão</h3>
-
-                <p>
-                    Tornar-se referência em pesquisa, conservação e divulgação científica da biodiversidade
-                    do Cerrado brasileiro.
-                </p>
-
+            <!-- Canais oficiais de denúncia -->
+            <div class="denuncia">
+                <div>
+                    <i class="fa-solid fa-phone"></i>
+                    <p><strong>Crimes ambientais:</strong> Linha Verde do IBAMA <a href="tel:08000618080">0800 061 8080</a></p>
+                </div>
+                <div>
+                    <i class="fa-solid fa-fire"></i>
+                    <p><strong>Incêndios:</strong> Corpo de Bombeiros <a href="tel:193">193</a></p>
+                </div>
             </div>
 
-            <div class="missao-card">
-
-                <i class="fa-solid fa-heart"></i>
-
-                <h3>Valores</h3>
-
-                <p>
-                    Ética, responsabilidade ambiental, inovação, respeito à natureza,
-                    compromisso científico e educação para transformar a sociedade.
-                </p>
-
+            <!-- Chamada para os vídeos no Instagram -->
+            <div class="chamada-instagram">
+                <i class="fa-brands fa-instagram"></i>
+                <div>
+                    <h3>Assista aos nossos vídeos</h3>
+                    <p>Os flagrantes das câmeras trap viram vídeos educativos no nosso Instagram.</p>
+                </div>
+                <!-- target="_blank" abre o link em uma nova aba.
+                     rel="noopener" é uma proteção de segurança recomendada junto com ele. -->
+                <a href="https://www.instagram.com/tucatinsilvestre/" target="_blank" rel="noopener" class="btn">
+                    @tucatinsilvestre
+                </a>
             </div>
 
         </div>
 
-    </div>
+    </section>
 
-</section>
 
-<!-- ================= ESPÉCIES MONITORADAS ================= -->
+    <!-- =====================================================
+         11. LINHA DO TEMPO
+         Corrigida com as datas que aparecem nos resumos.
+         Para adicionar um novo marco, copie um bloco
+         .timeline-item e alterne entre "esquerda" e "direita".
+    ====================================================== -->
+    <section class="timeline">
 
-<section class="especies-monitoradas">
+        <div class="container">
 
-    <div class="container">
+            <div class="titulo">
+                <span>Nossa História</span>
+                <h2>Linha do Tempo</h2>
+            </div>
 
-        <div class="titulo">
+            <div class="timeline-container">
 
-            <span>Biodiversidade</span>
-
-            <h2>Espécies Monitoradas</h2>
-
-            <p>
-                Conheça algumas das espécies que fazem parte das ações de pesquisa,
-                monitoramento e conservação do Projeto Tucãtins Silvestre.
-            </p>
-
-        </div>
-
-        <div class="especies-grid">
-
-            <article class="especie-card">
-
-                <img src="imagens/tucano.jpg" alt="Tucano-toco">
-
-                <div class="especie-info">
-
-                    <span class="categoria">Ave</span>
-
-                    <h3>Tucano-toco</h3>
-
-                    <h4><em>Ramphastos toco</em></h4>
-
-                    <p>
-                        Uma das aves mais emblemáticas do Cerrado, importante para a dispersão de sementes.
-                    </p>
-
-                    <div class="status status-baixo">
-                        🟢 Pouco Preocupante
+                <div class="timeline-item esquerda">
+                    <div class="timeline-content">
+                        <h3>2024</h3>
+                        <h4>Primeiros registros</h4>
+                        <p>Câmeras trap instaladas na mata ciliar do Córrego Sussuapara, em Palmas.</p>
                     </div>
-
-                    <a href="#" class="btn-especie">Saiba mais</a>
-
                 </div>
 
-            </article>
-
-            <article class="especie-card">
-
-                <img src="imagens/onca.jpg" alt="Onça-pintada">
-
-                <div class="especie-info">
-
-                    <span class="categoria">Mamífero</span>
-
-                    <h3>Onça-pintada</h3>
-
-                    <h4><em>Panthera onca</em></h4>
-
-                    <p>
-                        Maior felino das Américas e espécie fundamental para o equilíbrio dos ecossistemas.
-                    </p>
-
-                    <div class="status status-atencao">
-                        🟡 Quase Ameaçada
+                <div class="timeline-item direita">
+                    <div class="timeline-content">
+                        <h3>Julho de 2025</h3>
+                        <h4>Chegada a Formoso do Araguaia</h4>
+                        <p>Início do monitoramento em fragmentos de Cerrado em meio a áreas agrícolas.</p>
                     </div>
-
-                    <a href="#" class="btn-especie">Saiba mais</a>
-
                 </div>
 
-            </article>
-
-            <article class="especie-card">
-
-                <img src="imagens/arara.jpg" alt="Arara-canindé">
-
-                <div class="especie-info">
-
-                    <span class="categoria">Ave</span>
-
-                    <h3>Arara-canindé</h3>
-
-                    <h4><em>Ara ararauna</em></h4>
-
-                    <p>
-                        Espécie símbolo da fauna brasileira, encontrada em diferentes regiões do Tocantins.
-                    </p>
-
-                    <div class="status status-baixo">
-                        🟢 Pouco Preocupante
+                <div class="timeline-item esquerda">
+                    <div class="timeline-content">
+                        <h3>2025</h3>
+                        <h4>16ª JICE</h4>
+                        <p>Três trabalhos apresentados na Jornada de Iniciação Científica e Extensão do IFTO, em Gurupi.</p>
                     </div>
-
-                    <a href="#" class="btn-especie">Saiba mais</a>
-
                 </div>
 
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ================= NOTÍCIAS ================= -->
-
-<section class="noticias">
-
-    <div class="container">
-
-        <div class="titulo">
-
-            <span>Fique por dentro</span>
-
-            <h2>Notícias e Atualizações</h2>
-
-            <p>
-                Acompanhe as principais ações, pesquisas, eventos e novidades do Projeto Tucãtins Silvestre.
-            </p>
-
-        </div>
-
-        <div class="noticias-grid">
-
-            <article class="noticia">
-
-                <img src="imagens/noticia1.jpg" alt="Pesquisa de Campo">
-
-                <div class="conteudo-noticia">
-
-                    <span>Pesquisa</span>
-
-                    <h3>Expedição registra novas espécies no Cerrado</h3>
-
-                    <p>
-                        Equipe realiza levantamento da fauna e flora em áreas prioritárias para conservação.
-                    </p>
-
-                    <a href="#">Leia mais <i class="fa-solid fa-arrow-right"></i></a>
-
-                </div>
-
-            </article>
-
-            <article class="noticia">
-
-                <img src="imagens/noticia2.jpg" alt="Educação Ambiental">
-
-                <div class="conteudo-noticia">
-
-                    <span>Educação Ambiental</span>
-
-                    <h3>Oficina reúne estudantes do IFTO</h3>
-
-                    <p>
-                        Atividades práticas promoveram a conscientização sobre a biodiversidade do Tocantins.
-                    </p>
-
-                    <a href="#">Leia mais <i class="fa-solid fa-arrow-right"></i></a>
-
-                </div>
-
-            </article>
-
-            <article class="noticia">
-
-                <img src="imagens/noticia3.jpg" alt="Projeto">
-
-                <div class="conteudo-noticia">
-
-                    <span>Projeto</span>
-
-                    <h3>Novas parcerias fortalecem o Tucãtins Silvestre</h3>
-
-                    <p>
-                        Instituições unem esforços para ampliar as pesquisas e ações de preservação ambiental.
-                    </p>
-
-                    <a href="#">Leia mais <i class="fa-solid fa-arrow-right"></i></a>
-
-                </div>
-
-            </article>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ================= LINHA DO TEMPO ================= -->
-
-<section class="timeline">
-
-    <div class="container">
-
-        <div class="titulo">
-
-            <span>Nossa História</span>
-
-            <h2>Linha do Tempo</h2>
-
-            <p>
-                Conheça alguns dos principais momentos da trajetória do Projeto Tucãtins Silvestre.
-            </p>
-
-        </div>
-
-        <div class="timeline-container">
-
-            <div class="timeline-item esquerda">
-
-                <div class="timeline-content">
-
-                    <h3>2025</h3>
-
-                    <h4>Início do Projeto</h4>
-
-                    <p>
-                        Surgimento da iniciativa voltada à pesquisa e conservação da biodiversidade do Tocantins.
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="timeline-item direita">
-
-                <div class="timeline-content">
-
-                    <h3>2026</h3>
-
-                    <h4>Primeiras Expedições</h4>
-
-                    <p>
-                        Realização das primeiras atividades de campo e monitoramento ambiental.
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="timeline-item esquerda">
-
-                <div class="timeline-content">
-
-                    <h3>2026</h3>
-
-                    <h4>Parcerias</h4>
-
-                    <p>
-                        Ampliação das parcerias com instituições de ensino e pesquisa.
-                    </p>
-
-                </div>
-
-            </div>
-
-            <div class="timeline-item direita">
-
-                <div class="timeline-content">
-
-                    <h3>Futuro</h3>
-
-                    <h4>Expansão</h4>
-
-                    <p>
-                        Novos projetos, pesquisas científicas e ações de educação ambiental em todo o Tocantins.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<!-- ================= PUBLICAÇÕES ================= -->
-
-<section class="publicacoes">
-
-    <div class="container">
-
-        <div class="titulo">
-
-            <span>Produção Científica</span>
-
-            <h2>Publicações</h2>
-
-            <p>
-                Conheça os artigos, pesquisas, resumos, trabalhos e materiais desenvolvidos pelo Projeto Tucãtins Silvestre.
-            </p>
-
-        </div>
-
-        <div class="publicacoes-grid">
-
-            <div class="publicacao">
-
-                <i class="fa-solid fa-file-lines"></i>
-
-                <h3>Artigo Científico</h3>
-
-                <p>
-                    Levantamento da biodiversidade do Cerrado na região sul do Tocantins.
-                </p>
-
-                <a href="#">Ler publicação</a>
-
-            </div>
-
-            <div class="publicacao">
-
-                <i class="fa-solid fa-book"></i>
-
-                <h3>Relatório Técnico</h3>
-
-                <p>
-                    Monitoramento de espécies da fauna silvestre durante atividades de campo.
-                </p>
-
-                <a href="#">Baixar PDF</a>
-
-            </div>
-
-            <div class="publicacao">
-
-                <i class="fa-solid fa-graduation-cap"></i>
-
-                <h3>Resumo Expandido</h3>
-
-                <p>
-                    Apresentação em eventos científicos sobre conservação da biodiversidade.
-                </p>
-
-                <a href="#">Visualizar</a>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-    <!-- ================= OBJETIVOS ================= -->
-
-    <section class="objetivos">
-
-        <div class="container">
-
-            <div class="card">
-
-                <i class="fa-solid fa-leaf"></i>
-
-                <h3>Conservação</h3>
-
-                <p>
-                    Proteção da biodiversidade e dos ecossistemas.
-                </p>
-
-            </div>
-
-            <div class="card">
-
-                <i class="fa-solid fa-binoculars"></i>
-
-                <h3>Pesquisa</h3>
-
-                <p>
-                    Estudos científicos sobre fauna e flora.
-                </p>
-
-            </div>
-
-            <div class="card">
-
-                <i class="fa-solid fa-graduation-cap"></i>
-
-                <h3>Educação Ambiental</h3>
-
-                <p>
-                    Incentivo à conscientização e preservação ambiental.
-                </p>
-
-            </div>
-
-            <div class="card">
-
-                <i class="fa-solid fa-handshake"></i>
-
-                <h3>Parcerias</h3>
-
-                <p>
-                    Trabalhando juntos pela conservação da natureza.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <!-- ================= ESPÉCIES ================= -->
-
-    <section id="especies">
-
-        <div class="container">
-
-            <h2>Espécies em Destaque</h2>
-
-            <div class="cards">
-
-                <div class="animal">
-
-                    <img src="imagens/tucano.jpg" alt="Tucano">
-
-                    <h3>Tucano</h3>
-
-                </div>
-
-                <div class="animal">
-
-                    <img src="imagens/onca.jpg" alt="Onça-pintada">
-
-                    <h3>Onça-pintada</h3>
-
-                </div>
-
-                <div class="animal">
-
-                    <img src="imagens/arara.jpg" alt="Arara-canindé">
-
-                    <h3>Arara-canindé</h3>
-
+                <div class="timeline-item direita">
+                    <div class="timeline-content">
+                        <h3>Próximos passos</h3>
+                        <h4>Ampliar o estudo</h4>
+                        <p>Monitorar por mais tempo e em mais pontos, como recomendam os próprios resultados.</p>
+                    </div>
                 </div>
 
             </div>
@@ -692,152 +704,286 @@
 
     </section>
 
-    <!-- ================= PROJETOS ================= -->
 
-    <section id="projetos">
+    <!-- =====================================================
+         12. PUBLICAÇÕES
+         Agora com os trabalhos REAIS e links para o PDF.
+    ====================================================== -->
+    <section id="publicacoes" class="publicacoes">
 
         <div class="container">
 
-            <h2>Projetos</h2>
+            <div class="titulo">
+                <span>Produção Científica</span>
+                <h2>Publicações</h2>
+                <p>Resumos apresentados na 16ª JICE do IFTO (Gurupi-TO, 2025).</p>
+            </div>
 
-            <p>
+            <div class="publicacoes-grid">
 
-                Desenvolvemos pesquisas científicas, monitoramento da fauna, educação ambiental e ações de preservação da biodiversidade.
+                <article class="publicacao">
+                    <i class="fa-solid fa-paw"></i>
+                    <h3>Conservação e ecologia de mamíferos no Cerrado</h3>
+                    <p class="autores">
+                        Moura, P. A. C.; Sousa, G. S.; Oliveira, P. D. D.; Gomes, E. C.
+                    </p>
+                    <p>Registros de mamíferos como o tamanduá-bandeira e o veado-catingueiro nas duas áreas de estudo.</p>
+                    <a href="https://static.even3.com/anais/1260819.pdf" target="_blank" rel="noopener">
+                        <i class="fa-solid fa-file-pdf"></i> Ler PDF
+                    </a>
+                </article>
 
-            </p>
+                <article class="publicacao">
+                    <i class="fa-solid fa-dove"></i>
+                    <h3>Conservação e ecologia de aves no Cerrado</h3>
+                    <p class="autores">
+                        Sousa, G. S.; Moura, P. A. C.; Oliveira, P. D. D.; Gomes, E. C.
+                    </p>
+                    <p>Oito espécies de aves registradas e a relação entre paisagem e diversidade.</p>
+                    <a href="https://static.even3.com/anais/1260777.pdf" target="_blank" rel="noopener">
+                        <i class="fa-solid fa-file-pdf"></i> Ler PDF
+                    </a>
+                </article>
+
+                <article class="publicacao">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <h3>Educação ambiental e conservação da biodiversidade</h3>
+                    <p class="autores">
+                        Sousa, D. S.; Sousa, G. S.; Oliveira, P. D. D.; Gomes, E. C.
+                    </p>
+                    <p>Uso dos registros audiovisuais das câmeras trap como ferramenta de educação ambiental.</p>
+                    <a href="https://static.even3.com/anais/1260380.pdf" target="_blank" rel="noopener">
+                        <i class="fa-solid fa-file-pdf"></i> Ler PDF
+                    </a>
+                </article>
+
+            </div>
 
         </div>
 
     </section>
 
-    <!-- ================= NÚMEROS ================= -->
 
-<section class="numeros">
-
-    <div class="container">
-
-        <div class="titulo">
-
-            <span>Nossos Resultados</span>
-
-            <h2>Números do Projeto</h2>
-
-            <p>
-                O Tucãtins Silvestre trabalha diariamente para fortalecer a pesquisa,
-                a educação ambiental e a conservação da biodiversidade do Tocantins.
-            </p>
-
-        </div>
-
-        <div class="numeros-grid">
-
-            <div class="numero">
-
-                <i class="fa-solid fa-dove"></i>
-
-                <h2 data-numero="150">0</h2>
-
-                <p>Espécies Catalogadas</p>
-
-            </div>
-
-            <div class="numero">
-
-                <i class="fa-solid fa-flask"></i>
-
-                <h2 data-numero="25">0</h2>
-
-                <p>Pesquisas Realizadas</p>
-
-            </div>
-
-            <div class="numero">
-
-                <i class="fa-solid fa-tree"></i>
-
-                <h2 data-numero="12">0</h2>
-
-                <p>Projetos Ambientais</p>
-
-            </div>
-
-            <div class="numero">
-
-                <i class="fa-solid fa-users"></i>
-
-                <h2 data-numero="300">0</h2>
-
-                <p>Participantes</p>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-    <!-- ================= GALERIA ================= -->
-
-    <section id="galeria">
+    <!-- =====================================================
+         13. GALERIA
+         TODO: salvar as fotos e vídeos das câmeras trap em
+         imagens/galeria/ com os nomes abaixo.
+         Enquanto a foto não existir, o JavaScript mostra
+         um quadro "Foto em breve" no lugar (nada fica quebrado).
+         Use a legenda <figcaption> para dizer o QUE, ONDE e QUANDO.
+    ====================================================== -->
+    <section id="galeria" class="galeria-secao">
 
         <div class="container">
 
-            <h2>Galeria</h2>
+            <div class="titulo">
+                <span>Flagrantes</span>
+                <h2>Galeria</h2>
+                <p>Registros das câmeras trap e das atividades de campo.</p>
+            </div>
 
             <div class="galeria">
 
-                <img src="imagens/galeria1.jpg" alt="Fauna">
+                <!-- <figure> + <figcaption> = imagem com legenda -->
+                <figure>
+                    <img src="imagens/galeria/campo-formoso.jpg" alt="Fragmento de Cerrado em Formoso do Araguaia" loading="lazy">
+                    <figcaption>Fragmento de Cerrado • Formoso do Araguaia</figcaption>
+                </figure>
 
-                <img src="imagens/galeria2.jpg" alt="Flora">
-                <img src="imagens/galeria3.jpg" alt="Pesquisa">
-                <img src="imagens/galeria4.jpg" alt="Educação Ambiental">
-                <img src="imagens/galeria5.jpg" alt="Cerrado">
-                <img src="imagens/galeria6.jpg" alt="Projeto">
+                <figure>
+                    <img src="imagens/galeria/instalacao-camera.jpg" alt="Estudantes instalando uma câmera trap" loading="lazy">
+                    <figcaption>Instalação da câmera trap</figcaption>
+                </figure>
+
+                <figure>
+                    <img src="imagens/galeria/registro-tamandua.jpg" alt="Tamanduá-bandeira registrado pela câmera trap" loading="lazy">
+                    <figcaption>Tamanduá-bandeira • Formoso do Araguaia</figcaption>
+                </figure>
+
+                <figure>
+                    <img src="imagens/galeria/registro-seriema.jpg" alt="Seriema registrada pela câmera trap" loading="lazy">
+                    <figcaption>Seriema • Formoso do Araguaia</figcaption>
+                </figure>
+
+                <figure>
+                    <img src="imagens/galeria/corrego-sussuapara.jpg" alt="Mata ciliar do Córrego Sussuapara em Palmas" loading="lazy">
+                    <figcaption>Córrego Sussuapara • Palmas</figcaption>
+                </figure>
+
+                <figure>
+                    <img src="imagens/galeria/jice-2025.jpg" alt="Equipe apresentando trabalho na JICE 2025" loading="lazy">
+                    <figcaption>Apresentação na 16ª JICE • 2025</figcaption>
+                </figure>
+
             </div>
 
         </div>
 
     </section>
 
-    <section class="parceiros">
 
-    <div class="container">
-
-        <h2>Parceiros</h2>
-
-        <div class="logos">
-
-            <img src="imagens/ifto.png" alt="IFTO">
-            <img src="imagens/icmbio.png" alt="ICMBio">
-            <img src="imagens/sertao.png" alt="Sertão Silvestre">
-            <img src="imagens/roraima.png" alt="Roraima Silvestre">
-
-        </div>
-
-    </div>
-
-</section>
-
-    <!-- ================= CONTATO ================= -->
-
-    <section id="contato">
+    <!-- =====================================================
+         14. EQUIPE
+         Seção nova, com os nomes que constam nos resumos.
+         Como ainda não temos fotos, mostramos as INICIAIS
+         em um círculo colorido (feito só com CSS).
+         TODO: confirmar a lista com a equipe e, se quiser,
+         adicionar o link do Currículo Lattes de cada pessoa.
+    ====================================================== -->
+    <section id="equipe" class="equipe">
 
         <div class="container">
 
-            <h2>Entre em Contato</h2>
+            <div class="titulo">
+                <span>Quem faz acontecer</span>
+                <h2>Equipe</h2>
+            </div>
 
-            <form>
+            <div class="equipe-grid">
 
-                <input type="text" placeholder="Nome">
+                <div class="membro">
+                    <div class="avatar">PO</div>
+                    <h3>Polyanni Dallara Dantas Oliveira</h3>
+                    <p>Docente • Orientadora</p>
+                </div>
 
-                <input type="email" placeholder="E-mail">
+                <div class="membro">
+                    <div class="avatar">EG</div>
+                    <h3>Elenir Campelo Gomes</h3>
+                    <p>Docente • Orientadora</p>
+                </div>
 
-                <textarea placeholder="Mensagem"></textarea>
+                <div class="membro">
+                    <div class="avatar avatar-aluno">GS</div>
+                    <h3>Geovana dos Santos Sousa</h3>
+                    <p>Estudante • Téc. em Agricultura</p>
+                </div>
+
+                <div class="membro">
+                    <div class="avatar avatar-aluno">PM</div>
+                    <h3>Priscila Áquila da Costa Moura</h3>
+                    <p>Estudante • Téc. em Agricultura</p>
+                </div>
+
+                <div class="membro">
+                    <div class="avatar avatar-aluno">DS</div>
+                    <h3>Douglas Silvino de Sousa</h3>
+                    <p>Estudante • Téc. em Informática</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         15. PARCEIROS
+         Só mostramos parceiros CONFIRMADOS.
+         Os outros logos que existiam (ICMBio, Sertão Silvestre,
+         Roraima Silvestre) foram deixados comentados abaixo:
+         confirme a parceria antes de colocá-los de volta.
+    ====================================================== -->
+    <section class="parceiros">
+
+        <div class="container">
+
+            <div class="titulo">
+                <span>Juntos pela natureza</span>
+                <h2>Parceiros</h2>
+            </div>
+
+            <div class="logos">
+
+                <!-- Card do parceiro: logo oficial + nome.
+                     O logo fica em imagens/parceiros/ifto.png (baixado do portal do IFTO).
+                     O link abre o site do IFTO em uma nova aba. -->
+                <a href="https://portal.ifto.edu.br" target="_blank" rel="noopener" class="parceiro">
+                    <img src="imagens/parceiros/ifto.png" alt="Logo do Instituto Federal do Tocantins (IFTO)">
+                    <span>Instituto Federal do Tocantins</span>
+                </a>
+
+                <!--
+                <img src="imagens/parceiros/icmbio.png" alt="ICMBio">
+                <img src="imagens/parceiros/sertao.png" alt="Sertão Silvestre">
+                <img src="imagens/parceiros/roraima.png" alt="Roraima Silvestre">
+                -->
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         16. CONTATO E COMO PARTICIPAR
+    ====================================================== -->
+    <section id="contato" class="contato">
+
+        <div class="container contato-grid">
+
+            <!-- Coluna 1: formas de participar -->
+            <div class="participar">
+
+                <div class="titulo titulo-esquerda">
+                    <span>Faça parte</span>
+                    <h2>Como Participar</h2>
+                </div>
+
+                <ul class="participar-lista">
+                    <li>
+                        <i class="fa-solid fa-school"></i>
+                        <div>
+                            <h3>Escolas</h3>
+                            <p>Convide o projeto para uma conversa sobre a fauna do Cerrado.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-binoculars"></i>
+                        <div>
+                            <h3>Viu um animal silvestre?</h3>
+                            <p>Envie foto, local e data pelo Instagram. Seu registro pode ajudar a pesquisa!</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-share-nodes"></i>
+                        <div>
+                            <h3>Divulgue</h3>
+                            <p>Siga e compartilhe nossos vídeos com amigos e família.</p>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+
+            <!-- Coluna 2: formulário
+                 Como o site não tem servidor, o formulário abre o
+                 aplicativo de e-mail (ou o Instagram) da pessoa já com a
+                 mensagem preenchida. Veja a explicação em js/script.js.
+                 "required" faz o navegador exigir que o campo seja preenchido. -->
+            <form class="formulario" id="formulario">
+
+                <h3>Envie uma mensagem</h3>
+
+                <!-- <label> é o nome do campo. O "for" liga o label ao input de mesmo id.
+                     Isso ajuda na acessibilidade: clicar no texto seleciona o campo. -->
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+
+                <label for="email">E-mail</label>
+                <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required>
+
+                <label for="mensagem">Mensagem</label>
+                <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem" required></textarea>
 
                 <button type="submit">
-                    Enviar Mensagem
+                    <i class="fa-solid fa-paper-plane"></i> Enviar Mensagem
                 </button>
+
+                <!-- Aqui o JavaScript escreve um aviso depois do envio -->
+                <p class="formulario-aviso" id="formulario-aviso" aria-live="polite"></p>
 
             </form>
 
@@ -845,42 +991,61 @@
 
     </section>
 
-    <!-- ================= FOOTER ================= -->
 
-<footer>
+    <!-- =====================================================
+         17. RODAPÉ
+    ====================================================== -->
+    <footer>
 
-    <div class="container">
+        <div class="container">
 
-        <h2>Tucãtins Silvestre</h2>
+            <img src="imagens/logo.png" alt="Logo Tucãtins Silvestre" class="rodape-logo">
 
-        <p>
-            Conservando a biodiversidade do Tocantins através da pesquisa,
-            educação ambiental e proteção da fauna e flora.
-        </p>
+            <h2>Tucãtins Silvestre</h2>
 
-        <div class="redes">
+            <p>
+                Conhecer para conservar a fauna do Cerrado em Formoso do Araguaia - TO.
+            </p>
 
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            <p class="rodape-instituicao">
+                Projeto do Instituto Federal do Tocantins (IFTO)
+            </p>
 
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <!-- Redes sociais: só deixamos as que EXISTEM.
+                 Se criarem YouTube, Facebook etc., adicione um <a> igual a este. -->
+            <div class="redes">
+                <a href="https://www.instagram.com/tucatinsilvestre/" target="_blank" rel="noopener" aria-label="Instagram do projeto">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+            </div>
 
-            <a href="#"><i class="fab fa-youtube"></i></a>
+            <!-- Créditos de quem desenvolveu o site -->
+            <p class="rodape-creditos">
+                <i class="fa-solid fa-code"></i>
+                Site desenvolvido pelo aluno <strong>Douglas Silvino</strong>
+                e pelo professor <strong>Mateus Rodrigues</strong>
+            </p>
 
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <div class="copyright">
+                <!-- O ano é preenchido automaticamente pelo JavaScript -->
+                © <span id="ano">2026</span> Tucãtins Silvestre • Fotos dos animais: ilustrativas, Wikimedia Commons
+                (licenças Creative Commons)
+            </div>
 
         </div>
 
-        <div class="copyright">
+    </footer>
 
-            © 2026 Tucãtins Silvestre • Todos os direitos reservados.
 
-        </div>
-
-    </div>
-
-</footer>
-
-<script src="js/script.js"></script>
+    <!-- =====================================================
+         SCRIPTS
+         Ficam no final do <body> para que o HTML já esteja
+         carregado quando o JavaScript rodar.
+         A ORDEM IMPORTA: especies.js vem antes porque o
+         script.js usa a lista "especies" criada nele.
+    ====================================================== -->
+    <script src="js/especies.js"></script>
+    <script src="js/script.js"></script>
 
 </body>
 
